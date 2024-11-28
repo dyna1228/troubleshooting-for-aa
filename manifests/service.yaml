@@ -5,7 +5,15 @@ metadata:
     namespace: "82061375"
 
 spec:
-    ports:
-    - port: 8080 
-    selector:
-        app: troubleshooting
+  selector:
+    app: troubleshooting
+  ports:
+    - name: http  # 포트에 이름 추가
+      protocol: TCP
+      port: 80      # 클러스터 내에서 사용할 포트
+      targetPort: 80 # 실제 포드의 포트
+    - name: https  # 포트에 이름 추가
+      protocol: TCP
+      port: 443     # 또 다른 포트 추가
+      targetPort: 443
+  type: LoadBalancer
